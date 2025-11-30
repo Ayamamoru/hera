@@ -1,0 +1,82 @@
+name: Sync Appwrite Resources
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+    inputs:
+      resource_type:
+        description: 'Resource type to sync (collections, functions, all)'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - collections
+          - functions
+          - databases
+
+jobs:
+  sync:
+    name: Sync Resources
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Appwrite CLI
+        run: npm install -g appwrite-cli
+
+      - name: Configure Appwrite CLI
+        run: |
+          appwrite client \
+            --endpoint "${{ secrets.APPWRITE_ENDPOINT }}" \
+            --project-id "${{ secrets.APPWRITE_PROJECT_ID }}" \
+            --key "${{ secrets.APPWRITE_API_KEY }}"
+
+      - name: Pull all resources
+        if: github.event.inputs.resource_type == 'all' || github.event.inputs.resource_type == ''
+        run: appwrite pull all --force
+        env:
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+
+      - name: Pull collections
+        if: github.event.inputs.resource_type == 'collections'
+        run: appwrite pull collections --all --force
+        env:
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+
+      - name: Pull functions
+        if: github.event.inputs.resource_type == 'functions'
+        run: appwrite pull functions --all --force
+        env:
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+
+      - name: Pull databases
+        if: github.event.inputs.resource_type == 'databases'
+        run: appwrite pull databases --all --force
+        env:
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: sync Appwrite resources"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
