@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen w-screen bg-zinc-50 dark:bg-black">
-      <nav className="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 sticky top-0 z-50">
+    <div className="flex flex-col h-screen w-screen bg-zinc-50 dark:bg-black relative">
+      <nav className="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 sticky top-0 z-40">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-bold text-black dark:text-white">Kernel Bye</h1>
           <div className="flex gap-6">
@@ -19,12 +19,20 @@ export default function Home() {
       </nav>
 
       <main className="flex-1 flex items-center justify-center w-full overflow-auto">
-        <div className="flex flex-col items-center gap-6 text-center">
-          <h1 className="text-4xl font-semibold leading-12 tracking-tight text-black dark:text-zinc-50">
-            Kernel Bye uh this page is a WIP rn ok chill
-          </h1>
-        </div>
+        <p className="text-lg text-zinc-600 dark:text-zinc-400">this page is a WIP rn ok chill</p>
       </main>
+
+      <div className="fixed top-16 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-6 text-center">
+        <h1 className="text-7xl font-bold leading-none tracking-tight text-black dark:text-zinc-50">
+          Kernel Bye
+        </h1>
+      </div>
+
+      <div className="fixed top-48 left-1/2 -translate-x-1/2 z-50">
+        <div className="px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-black text-sm font-medium">
+          2381 robotics
+        </div>
+      </div>
     </div>
   );
 }
