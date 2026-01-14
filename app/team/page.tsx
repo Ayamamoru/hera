@@ -1,7 +1,7 @@
-export default function Home() {
+export default function Team() {
   return (
     <div className="flex flex-col h-screen w-screen bg-zinc-50 dark:bg-black relative">
-      <nav className="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 sticky top-0 z-40 rounded-b-3xl shadow-xl">
+      <nav className="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 sticky top-0 z-40">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-bold text-black dark:text-white">Kernel Bye</h1>
           <div className="flex gap-8">
@@ -14,6 +14,9 @@ export default function Home() {
             <a href="/competition-stats" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition">
               Competition Stats
             </a>
+            <a href="/team" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition">
+              Team
+            </a>
             <a href="/gallery" className="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition">
               Gallery
             </a>
@@ -24,10 +27,10 @@ export default function Home() {
         </div>
       </nav>
       {/*Center page content!! */}
-      <main className="flex-1 flex flex-col items-center justify-center w-full overflow-auto gap-4 rounded-t-3xl bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700 shadow-inner">
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">Building the Future,</p>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">One Kernel at a Time</p>
-        <p className="text-sm text-zinc-400 dark:text-zinc-400">A city of Ottawa Premier Vex Robotics Team 2381</p>
+      <main className="flex-1 flex flex-col items-center justify-center w-full overflow-auto gap-4">
+        <p className="text-lg text-zinc-600 dark:text-zinc-400">Meet the Team</p>
+        <p className="text-lg text-zinc-600 dark:text-zinc-400">Kernel Bye Members</p>
+        <p className="text-sm text-zinc-400 dark:text-zinc-400">Ottawa's Premier VEX Robotics Team</p>
       </main>
 
       {/* Title, OVER the navbar border */}
@@ -45,5 +48,3 @@ export default function Home() {
     </div>
   );
 }
-
-//Yo am i crazy or is this not committing to github

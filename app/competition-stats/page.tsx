@@ -1,4 +1,6 @@
-export default function Home() {
+import CompStats from '../compstats'
+
+export default function CompetitionStats() {
   return (
     <div className="flex flex-col h-screen w-screen bg-zinc-50 dark:bg-black relative">
       <nav className="w-full bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-6 py-4 sticky top-0 z-40 rounded-b-3xl shadow-xl">
@@ -23,27 +25,15 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      {/*Center page content!! */}
-      <main className="flex-1 flex flex-col items-center justify-center w-full overflow-auto gap-4 rounded-t-3xl bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700 shadow-inner">
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">Building the Future,</p>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400">One Kernel at a Time</p>
-        <p className="text-sm text-zinc-400 dark:text-zinc-400">A city of Ottawa Premier Vex Robotics Team 2381</p>
-      </main>
-
-      {/* Title, OVER the navbar border */}
-      <div className="fixed top-16 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-6 text-center">
-        <h1 className="text-7xl font-bold leading-none tracking-tight text-black dark:text-zinc-50">
-          Kernel Bye
-        </h1>
-      </div>
-      {/* That oval thing in the figma... Under heading */}
-      <div className="fixed top-48 left-1/2 -translate-x-1/2 z-50">
+      <div className="flex justify-center py-4">
         <div className="px-4 py-2 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-black text-sm font-medium">
           2381 robotics
         </div>
       </div>
+      {/*Center page content!! */}
+      <main className="flex-1 flex flex-col items-center justify-center w-full overflow-auto gap-4 rounded-t-3xl bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-700 shadow-inner">
+        <CompStats />
+      </main>
     </div>
   );
 }
-
-//Yo am i crazy or is this not committing to github
